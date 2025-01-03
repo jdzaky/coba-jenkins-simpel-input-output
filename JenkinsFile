@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         GIT_CREDENTIALS = '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' 
+        NGROK_AUTHTOKEN = '2hYTlqXdpzLr2Z0V66QfOEFxnAs_2GS6rEfvid4r6ndwpZKXX'
     }
 
     stages {
