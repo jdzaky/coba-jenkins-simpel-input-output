@@ -33,6 +33,7 @@ pipeline {
                 timeout(time: 4, unit: 'MINUTES') { 
                     sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" authtoken ${NGROK_AUTHTOKEN}'
                     sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" http 6969 > ngrok_url.txt &'
+                    sh 'echo "File dibuat di: %cd%/ngrok_url.txt"'
                 }
             }
         }
