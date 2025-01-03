@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Expose with ngrok') {
             steps {
-                sh 'D:/DOWNLOAD/Aplikasi exe/ngrok.exe http 6969'
+                sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" http 6969'
             }
         }
     }
