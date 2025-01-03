@@ -1,10 +1,21 @@
 pipeline {
     agent any
 
+    environment {
+        GIT_CREDENTIALS = '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' 
+        NGROK_AUTHTOKEN = '2hYTlqXdpzLr2Z0V66QfOEFxnAs_2GS6rEfvid4r6ndwpZKXX'
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/jdzaky/coba-jenkins-simpel-input-output.git'
+                checkout([$class: 'GitSCM',
+                          branches: [[name: '*/master']],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[credentialsId: env.GIT_CREDENTIALS,
+                                                url: 'https://github.com/jdzaky/coba-jenkins-simpel-input-output.git']]])
             }
         }
         stage('Install Dependencies') {
@@ -19,7 +30,10 @@ pipeline {
         }
         stage('Expose with ngrok') {
             steps {
-                sh './ngrok http 6969'
+                timeout(time: 4, unit: 'MINUTES') { 
+                    sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" authtoken ${NGROK_AUTHTOKEN}'
+                    sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" http 6969 &'
+                }
             }
         }
     }
