@@ -9,7 +9,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/jdzaky/coba-jenkins-simpel-input-output.git', credentialsId: env.GIT_CREDENTIALS
+                checkout([$class: 'GitSCM',
+                          branches: [[name: '*/master']],
+                          doGenerateSubmoduleConfigurations: false,
+                          extensions: [],
+                          submoduleCfg: [],
+                          userRemoteConfigs: [[credentialsId: env.GIT_CREDENTIALS,
+                                                url: 'https://github.com/jdzaky/coba-jenkins-simpel-input-output.git']]])
             }
         }
         stage('Install Dependencies') {
