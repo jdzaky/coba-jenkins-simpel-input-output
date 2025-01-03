@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        GIT_CREDENTIALS = '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' 
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -19,7 +23,7 @@ pipeline {
         }
         stage('Expose with ngrok') {
             steps {
-                sh './ngrok http 6969'
+                sh 'D:\DOWNLOAD\Aplikasi exe\ngrok.exe http 6969'
             }
         }
     }
