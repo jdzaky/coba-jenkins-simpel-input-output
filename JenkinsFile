@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/jdzaky/coba-jenkins-simpel-input-output.git'
+                git 'https://github.com/jdzaky/coba-jenkins-simpel-input-output.git', credentialsId: env.GIT_CREDENTIALS
             }
         }
         stage('Install Dependencies') {
@@ -24,7 +24,8 @@ pipeline {
         }
         stage('Expose with ngrok') {
             steps {
-                sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" http http://localhost:6969'
+                sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" authtoken ${NGROK_AUTHTOKEN}'
+                sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" http 6969'
             }
         }
     }
