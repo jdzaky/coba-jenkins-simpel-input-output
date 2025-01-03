@@ -1,2 +1,2 @@
 #!/bin/bash
-./ngrok http 6969
+./ngrok http http://localhost:6969
