@@ -32,7 +32,7 @@ pipeline {
             steps {
                 timeout(time: 4, unit: 'MINUTES') { 
                     sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" authtoken ${NGROK_AUTHTOKEN}'
-                    sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" http 6969'
+                    sh '"D:/DOWNLOAD/Aplikasi exe/ngrok.exe" http 6969 > ngrok_url.txt &'
                 }
             }
         }
